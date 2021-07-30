@@ -12,7 +12,7 @@ programa
 
 		 para(inteiro linha=0;linha<3;linha++){
 		 	para(inteiro col=0;col<3;col++){
-		 	escreva("Digite um número: ")
+		 	escreva("Digite um número qualquer: ")
 		 	leia(matriz[linha][col])
 		 	totalMatriz+=matriz[linha][col]
 		 	se(linha == col){
@@ -29,7 +29,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 691; 
+ * @POSICAO-CURSOR = 429; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {matriz, 11, 11, 6};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
