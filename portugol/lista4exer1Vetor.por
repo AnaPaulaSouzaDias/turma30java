@@ -20,7 +20,7 @@ programa
 			
 
 		para(inteiro num=0;num<5;num++){
-			escreva("O valor da "+posicao2+"º jogada foi:"+pontuacao[num]+"\n")
+			escreva("O valor da "+posicao2+"º jogada foi: "+pontuacao[num]+"\n")
 			posicao2++
 			}
 			escreva("A maior pontuacao foi: ",maior)
@@ -32,7 +32,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 644; 
+ * @POSICAO-CURSOR = 555; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {pontuacao, 9, 10, 9};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
