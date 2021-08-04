@@ -16,11 +16,11 @@ public class exerc4 {
 	 *   se a pessoa era agressiva). Pede-se para elaborar um sistema 
 	 *   que permita ler os dados de 150 pessoas, calcule e mostre: (WHILE)
 		 */
-       int idade, contPes =0, limitePes =3,pessCalmas=0,mulNerv=0,homAgre=0, NeutroCalm=0,pesNerMai40=0,pesCalmMen18=0;
+       int idade, contPes =0, limitePes =150,pessCalmas=0,mulNerv=0,homAgre=0, NeutroCalm=0,pesNerMai40=0,pesCalmMen18=0;
        char caracteristica,sexo;
        Scanner leia = new Scanner(System.in);
        
-       while(contPes<=limitePes){
+       while(contPes<limitePes){
           System.out.print("Digite a idade: ");
           idade=leia.nextInt();
           System.out.print("Digite o sexo: 1-feminino / 2-masculino / 3-neutro ");
