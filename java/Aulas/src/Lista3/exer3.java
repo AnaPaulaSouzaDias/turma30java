@@ -1,0 +1,31 @@
+package Lista3;
+
+import java.util.Scanner;
+
+public class exer3 {
+
+	public static void main(String[] args) {
+		/*
+		 * Solicitar a idade de várias pessoas e imprimir:
+		 *  Total de pessoas com menos de 21 anos. 
+		 *  Total de pessoas com mais de 50 anos. 
+		 *  O programa termina quando idade for =-99. (WHILE)
+		 */
+		
+		int contMenor21 =0,contMaior50=0, idade=0, cont=0;
+		Scanner leia=new Scanner(System.in);
+		
+		while(idade<99) {
+			System.out.printf("Qual a idade da $dº pessoa",cont);
+			idade=leia.nextInt();
+			if(idade <=21){
+				contMenor21+=1;
+			}else if(idade>55) {
+				contMaior50+=1;
+			}
+		}
+		System.out.printf("O total de pessoas com idade menor que 21 é: %d \n"	contMenor21);
+		System.out.printf("O total de pessoas com idade maior que 55 é: %d \n"	contMaior50);	
+	}
+
+}
