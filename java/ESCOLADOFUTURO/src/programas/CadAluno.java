@@ -30,31 +30,23 @@ public class CadAluno {
 		//Aluno inativo ou aluno ativo baseado no true ou false de ativo - 
 		//somente dos alunos que tem nota
 			
-		//Gerando a Matricula 
-		System.out.println("");
+		//Gerando a Matricula e 
+		//Mostrando todos os Alunos com Matricula, Nota e Situação
+		System.out.println("MAT\tSTATUS\tNOTA\tNOME");
 		
 		 for (int x=0; x<alunes.length; x++) {
-			if(x==8) {
-				matriculas[x] = "MAT-1"+(x+1);
+			 notas[x]=0;
+			 ativo[x]=true;	
+			 situacao[x] = "ATIVO";
+			if(x<=8) {
+				matriculas[x] = "MAT-0"+(x+1);
 			}
 			else {
 				matriculas[x] = "MAT-"+(x+1);
 			}
-			ativo[x] = true;
-		}
+			System.out.printf("%s\t %s\t %d\t %s\n",matriculas[x],situacao[x],notas[x],alunes[x]);
+		  }
 				
-		//Mostrar todos os Alunos com Matricula e Nota
-		System.out.println("Mat\tAlunes\t");
-		
-			for(int x=0;x<matriculas.length;x++){
-				System.out.printf("%s\t %s\t %d \t",matriculas[x],alunes[x],notas[x]);
-				if(ativo[x] == true) {
-					System.out.println(" Ativo \n");
-				}else 
-				{
-					System.out.println(" Inativo \n");
-				}
-		}
 			//Se digitado o número da matricula, a nota e se esta ativo ou não
 
 			do {	
