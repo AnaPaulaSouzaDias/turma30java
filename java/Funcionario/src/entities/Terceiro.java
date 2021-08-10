@@ -1,0 +1,26 @@
+package entities;
+
+public class Terceiro extends Funcionario {
+
+			private double adicional;
+			
+			
+			public Terceiro(String matricula, int horasTrabalhadas, double valorPorHora, double adicional) {
+				super(matricula, horasTrabalhadas, valorPorHora);
+				this.adicional = adicional;
+			}
+			   
+			public double getAdicional() {
+						return adicional;
+					}
+
+			public void setAdicional(double adicional) {
+				this.adicional = adicional;
+			}
+
+	
+			public double salario() {
+				   return((getHorasTrabalhadas()*getValorPorHora())+adicional);
+			   }
+	
+}
