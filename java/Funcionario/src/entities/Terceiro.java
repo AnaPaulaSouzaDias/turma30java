@@ -5,8 +5,8 @@ public class Terceiro extends Funcionario {
 			private double adicional;
 			
 			
-			public Terceiro(String matricula, int horasTrabalhadas, double valorPorHora, double adicional) {
-				super(matricula, horasTrabalhadas, valorPorHora);
+			public Terceiro(String matricula, int horasTrabalhadas, double valorHora, double adicional) {
+				super(matricula, horasTrabalhadas, valorHora);
 				this.adicional = adicional;
 			}
 			   
@@ -18,9 +18,9 @@ public class Terceiro extends Funcionario {
 				this.adicional = adicional;
 			}
 
-	
+			@Override
 			public double salario() {
-				   return((getHorasTrabalhadas()*getValorPorHora())+adicional);
+				   return(horasTrabalhadas*valorHora)+adicional;
 			   }
 	
 }

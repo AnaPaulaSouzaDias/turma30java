@@ -1,30 +1,25 @@
 package entities;
 
 public class Funcionario {
-			  /*
-			   * 
-				método calculoSalario retorna 
-				horasTrabalhadas * valorPorHora
-				proteção
-				construtor completo
-				Fazer uma subclasse Terceiro
-				atributo adicional (double)
-				construtor completo
-				proteção
-				salario terceiro é quase igual do funcionário , precisar somar o valor do adicional
-				método vai se chamar salario()
-			   */
+		
 			//atributos
 	   		private String matricula;
-	   		private int horasTrabalhadas;
-	   		private double valorPorHora;
+	   		protected int horasTrabalhadas;
+	   		protected double valorHora;
 	   		
 	   		//contrutor
-			public Funcionario(String matricula, int horasTrabalhadas, double valorPorHora) {
+			public Funcionario(String matricula, int horasTrabalhadas, double valorHora) {
 				super();
 				this.matricula = matricula;
-				this.horasTrabalhadas = horasTrabalhadas;
-				this.valorPorHora = valorPorHora;
+				if(horasTrabalhadas<0) {
+					this.horasTrabalhadas=0;
+				}else {
+				this.horasTrabalhadas = horasTrabalhadas;}
+				if(valorHora<0) {
+					this.valorHora=0;
+				}else {
+				this.valorHora= valorHora;}
+				
 			}
 			
 			//encapsulamento
@@ -45,15 +40,16 @@ public class Funcionario {
 			}
 
 			public double getValorPorHora() {
-				return valorPorHora;
+				return valorHora;
 			}
 
 			public void setValorPorHora(double valorPorHora) {
-				this.valorPorHora = valorPorHora;
+				this.valorHora = valorPorHora;
 			}
 			
+			//metodo
 			public double salario() {
-				return(this.horasTrabalhadas*this.valorPorHora);
+				return(this.horasTrabalhadas*this.valorHora);
 			}
 					
 }
