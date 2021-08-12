@@ -6,301 +6,143 @@ import java.util.Scanner;
 public class JoiasCode {
 
 	public static void main(String[] args) {
-		// FUNÇÕES - BIBLIOTECAS
+
+		// FUNÇÕES
 		Scanner leia = new Scanner(System.in);
 		DecimalFormat df = new DecimalFormat("#.00");
 
-		// VARIÁVEIS
-		final int TAM = 10;
-		String produto[] = { "PULSEIRA ICY", "ANEL TOPÁZIO", "COlAR SAFIRA", "PULSEIRA LIZ", "ANEL CRISTAL",
-				"BRINCO JASPE", "PINGENTE LUA", "COLAR AMÉLIA", "ANEL CRISTAL", "BRINCO ÁGATA" };
-		String carrinho[] = new String[TAM];
-		String codigo[] = new String[TAM];
-		String auxCod = "";
-		char op = 'S', op1 = 'S', op2 = 'S', op3 = 'S';
-		boolean formato = false; // VALOR BOLEANO - VERDADEIRO OU FALSO
-		double valores[] = { 70.99, 50.99, 39.99, 59.99, 65.59, 85.99, 45.59, 40.59, 99.59, 59.79 };
-		double valorCompra[] = new double[TAM];
-		double contador = 0.0, contador2 = 0.0;
-		int estoque[] = new int[TAM];
-		int contEstoque[] = new int[TAM];
-		int auxQntd[] = new int[TAM]; // CONTADOR
-		int pagamento = 0;
+		// VARIAVEIS
+		String auxCod;
+		int pos, x, auxQntd, pagamento;
+		char op, op2, op3;
+		
+		// LISTAS
+		ArrayList<Produto> itens = new ArrayList<>();
+		ArrayList<Produto> carrinho = new ArrayList<>();
 
-		// GERADOR DE CÓDIGO
-		for (int x = 0; x < 10; x++) {
-			codigo[x] = "G7-0" + (x + 1);
-			auxQntd[x] = 0;
-			contEstoque[x] = 0;
-			estoque[x] = 10;
-		}
+		itens.add(new Produto("G7-01", "PULSEIRA ICY", 70.99, 10));
+		itens.add(new Produto("G7-02", "ANEL TOPÁZIO", 50.99, 10));
+		itens.add(new Produto("G7-03", "COlAR SAFIRA", 39.99, 10));
+		itens.add(new Produto("G7-04", "PULSEIRA LIZ", 59.99, 10));
+		itens.add(new Produto("G7-05", "ANEL CRISTAL", 65.59, 10));
+		itens.add(new Produto("G7-06", "BRINCO JASPE", 85.99, 10));
+		itens.add(new Produto("G7-07", "PINGENTE LUA", 45.59, 10));
+		itens.add(new Produto("G7-08", "COLAR AMÉLIA", 40.59, 10));
+		itens.add(new Produto("G7-09", "ANEL CRISTAL", 99.59, 10));
+		itens.add(new Produto("G7-10", "BRINCO ÁGATA", 59.79, 10));
 
+		// TABELA RELAÇÃO PRODUTOS + NOME/SLOGAN
 		linha();
 		System.out.print("\n\t\t    \n");
 		nome();
-		linha();
-		System.out.print("\t        ✧ RELAÇÃO DE PRODUTOS ✧");
-		linha();
-		System.out.print("CÓDIGO\t        PRODUTO\t\t   PREÇO\t  ESTOQUE\n");
-
-		for (int x = 0; x < 10; x++) {
-			System.out.print("\n " + codigo[x] + "\t\t" + produto[x] + "\t  " + valores[x] + "\t\t  " + estoque[x]);
+		for (Produto lista : itens) {
+			System.out.print("\n" + lista.getCodigo() + "\t" + lista.getNome() + "\t  " + df.format(lista.getValor()) + "\t       "
+					+ lista.getEstoque());
 		}
 
+		// VALIDAÇÃO DE COMPRA
 		linha();
-		System.out.println("DESEJA FAZER COMPRAS? ");
+		System.out.print("DESEJA FAZER COMPRAS? ");
 		System.out.print("\n(DIGITE 'S' PARA SIM E 'N' PARA NÃO): ");
 		op = leia.next().toUpperCase().charAt(0);
 		linha();
-
 		if (op == 'S') {
-
+			
 			// COMEÇO DA PRIMEIRA FUNÇÃO DE FAZER COMPRAS
-
 			do {
+				leia.nextLine();
 				System.out.print("\nDIGITE O CÓDIGO DO PRODUTO: ");
-				auxCod = leia.next().toUpperCase();
+				auxCod = leia.nextLine().toUpperCase();
 
-				for (int x = 0; x < 10; x++) {
-					if (auxCod.equals(codigo[x])) {
-						System.out.print("INFORME A QUANTIDADE QUE DESEJA: ");
-						contEstoque[x] = leia.nextInt();
-						auxQntd[x] += contEstoque[x];
+				//LAÇO DA VALIDAÇÃO DO CÓDIGO DO PRODUTO
+				for (x = 0; x < itens.size(); x++) {
+					// LAÇO CONDICIONAL DE VALIDAÇÃO DO CÓDIGO INSERIDO
+					if (itens.get(x).getCodigo().equals(auxCod)) {
+						pos = x;
+						System.out.print("\nCÓDIGO\tPRODUTO \tPREÇO \tESTOQUE");
+						System.out.print("\n" + itens.get(pos).getCodigo() + "\t" + itens.get(pos).getNome() + "\t"
+								+ itens.get(pos).getValor() + "\t  " + itens.get(pos).getEstoque() + "\n"); 
+						System.out.print("\nINFORME A QUANTIDADE QUE DESEJA: ");
+						auxQntd = leia.nextInt();
 
-						if (contEstoque[x] > estoque[x]) {
-							auxQntd[x] = 0;
-							linha();
-							System.out.println("QUANTIDADE INVÁLIDA");
-							System.out.println("\nO ESTOQUE É DE: " + estoque[x]);
+						// LAÇO CONDICIONAL DE VALIDAÇÃO DA QUANTIDADE NO ESTOQUE
+						if (auxQntd > itens.get(pos).getEstoque()) {
+							System.out.println("QUANTIDADE INVÁLIDA.");
+							System.out.println("O ESTOQUE É DE: " + itens.get(pos).getEstoque());
 
-						} else if (contEstoque[x] <= 0) {
-							System.out.println("QUANTIDADE INVÁLIDA");
-							System.out.println("\nO ESTOQUE É DE: " + estoque[x]);
-						} else if (contEstoque[x] <= estoque[x]) {
-							// VALIDAÇÃO E O PRIMEIRO CARRINHO DO CÓDIGO
-							estoque[x] = estoque[x] - contEstoque[x];
-							valorCompra[x] = valores[x] * auxQntd[x];
+						} else if (auxQntd <= 0) {
+							System.out.println("QUANTIDADE INVÁLIDA.");
+							System.out.print("O ESTOQUE É DE: " + itens.get(pos).getEstoque());
+
+						} else if (itens.get(pos).getEstoque() == 0) {
+							System.out.println("QUANTIDADE INVÁLIDA.");
+							System.out.print("O ESTOQUE É DE: " + itens.get(pos).getEstoque());
+							
+						} else {
+							carrinho.add(new Produto(itens.get(pos).getCodigo(), itens.get(pos).getNome(),
+									itens.get(pos).getValor(), auxQntd));
+							
+							itens.get(pos).retirarEstoque(auxQntd);
+							leia.nextLine();
+							
+							// EXIBIÇÃO DE CARRINHO
 							linha();
 							System.out.println("\t         ✧ CARRINHO DE COMPRAS ✧");
-							linha();
-							System.out.println("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n");
-
-							for (x = 0; x < 10; x++) {
-								if (auxQntd[x] > 0) {
-									System.out.print("\n " + codigo[x] + "\t     " + produto[x] + "\t  R$"
-											+ df.format(valorCompra[x]) + "\t    " + auxQntd[x]);
-								}
+							for (Produto lista2: carrinho) {
+								System.out.print("\n" + lista2.getCodigo() + "\t" + lista2.getNome() + "\t  " + lista2.getValor() + " \t" + lista2.getEstoque());
 							}
-
+							linha();
 						}
 					}
-					
-					if (auxCod.equals("G7-01") == false && auxCod.equals("G7-02") == false
-							&& auxCod.equals("G7-03") == false && auxCod.equals("G7-04") == false
-							&& auxCod.equals("G7-05") == false && auxCod.equals("G7-06") == false
-							&& auxCod.equals("G7-07") == false && auxCod.equals("G7-08") == false
-							&& auxCod.equals("G7-09") == false && auxCod.equals("G7-010") == false) {
-						System.out.println("CÓDIGO INVÁLIDO!");
-						break;
-					}
-
 				}
-				// FUNÇÃO DE CONTINUAR COMPRANDO
+				
+				// CONDICIONAL QUE SAI DO LAÇO DO..WHILE
 				System.out.println("DESEJA CONTINUAR COMPRANDO?");
 				System.out.print("\nDIGITE 'S' PARA SIM E 'N' PARA NÃO: ");
 				op = leia.next().toUpperCase().charAt(0);
 				linha();
-
-				if (op == 'S') {
-					System.out.print("\t        ✧ RELAÇÃO DE PRODUTOS ✧");
-					linha();
-					System.out.print("CÓDIGO\t        PRODUTO\t\t   PREÇO\t  ESTOQUE\n");
-
-					for (int x = 0; x < 10; x++) {
-						System.out.print(
-								"\n " + codigo[x] + "\t\t" + produto[x] + "\t  " + valores[x] + "\t\t  " + estoque[x]);
-					}
-				}
-
+				
 			} while (op == 'S');
-
-			if (op == 'N') {
+			
+			if (true) {
 				System.out.println("\t         ✧ CARRINHO DE COMPRAS ✧");
-				linha();
-				System.out.println("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n");
-
-				for (int x = 0; x < 10; x++) {
-					if (auxQntd[x] > 0) {
-						System.out.print("\n " + codigo[x] + "\t     " + produto[x] + "\t  R$"
-								+ df.format(valorCompra[x]) + "\t    " + auxQntd[x]);
-					}
+				for (Produto lista2: carrinho) {
+					System.out.print("\n" + lista2.getCodigo() + "\t" + lista2.getNome() + "\t  " + df.format(lista2.getValor()) + " \t" + lista2.getEstoque());
 				}
-
-				System.out.print("\nDESEJA MODIFICAR O PEDIDO?");
-				System.out.print("\nDIGITE 'S' PARA SIM OU 'N' PARA NÃO: ");
-				op2 = leia.next().toUpperCase().charAt(0);
-
-				while (op2 == 'S') {
-
-					System.out.print("\nDIGITE O CÓDIGO DO PRODUTO: ");
-					auxCod = leia.next().toUpperCase();
-
-					for (int x = 0; x < 10; x++) {
-						if (auxCod.equals(codigo[x])) {
-							System.out.print("\nINFORME A QUANTIDADE QUE DESEJA RETIRAR DO PRODUTO: ");
-							contEstoque[x] = leia.nextInt();
-							auxQntd[x] -= contEstoque[x];
-							estoque[x] = estoque[x] + contEstoque[x];
-							valorCompra[x] = valores[x] * auxQntd[x];
-						}
-					}
-
-					System.out.println("\t         ✧ CARRINHO DE COMPRAS ✧");
-					linha();
-					System.out.println("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n");
-
-					for (int x = 0; x < 10; x++) {
-						if (auxQntd[x] > 0) {
-							System.out.print("\n " + codigo[x] + "\t     " + produto[x] + "\t  R$"
-									+ df.format(valorCompra[x]) + "\t    " + auxQntd[x]);
-						}
-					}
-
-					System.out.print("\nDESEJA CONTINUAR MODIFICANDO?");
-					System.out.print("\nDIGITE 'S' PARA SIM OU 'N' PARA NÃO: ");
-					op2 = leia.next().toUpperCase().charAt(0);
-
-				}
-
-				for (int x = 0; x < 10; x++) {
-					contador += (auxQntd[x] * valores[x]);
-				}
-
-				if (contador != 0) {
-					System.out.println("\t         ✧ CARRINHO DE COMPRAS ✧");
-					linha();
-					System.out.println("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n");
-
-					for (int y = 0; y < 10; y++) {
-						if (auxQntd[y] > 0) {
-							System.out.print("\n " + codigo[y] + "\t     " + produto[y] + "\t  R$"
-									+ df.format(valorCompra[y]) + "\t    " + auxQntd[y]);
-						}
-
-					}
-					// FINALIZAÇÃO DAS COMPRAS
-					linha();
-					System.out.printf("\t   VALOR TOTAL DA COMPRA: R$ %.2f", contador);
-					linha();
-					System.out.print("\t\tFORMA DE PAGAMENTOS:\n\n");
-					System.out.print(" OPÇÃO 1 - A VISTA COM 10% DESCONTO\n");
-					System.out.print(" OPÇÃO 2 - NO CARTÃO COM ACRESCIMO DE 10%\n");
-					System.out.print(" OPÇÃO 3 - EM 2X COM 15% TOTAL DE ACRESCIMENTO\n");
-					linha();
-
-					do {
-						System.out.print("INSIRA AQUI SUA FORMA DE PAGAMENTO: ");
-						pagamento = leia.nextInt();
-
-						switch (pagamento) {
-						case 1:
-							linha();
-							nome();
-							linha();
-							contador2 = contador * 0.9;
-							System.out.print("\n\t\t   ✧ NOTA FISCAL ✧\n\n");
-							System.out.print("\t\t\n VALOR TOTAL: R$ " + df.format(contador2));
-							contador2 = contador * 0.09;
-							System.out.print("\t\t\n 9% DE IMPOSTOS: R$ " + df.format(contador2));
-							linha();
-							break;
-
-						case 2:
-							linha();
-							nome();
-							linha();
-							contador2 = contador * 1.1;
-							System.out.print("\n\t\t   ✧ NOTA FISCAL ✧\n\n");
-							System.out.print("\t\t\n VALOR TOTAL: R$ " + df.format(contador2));
-							contador2 = contador * 0.09;
-							System.out.print("\t\t\n 9% DE IMPOSTOS: R$ " + df.format(contador2));
-							linha();
-							break;
-
-						case 3:
-							linha();
-							nome();
-							linha();
-							contador = (contador * 1.15) / 2;
-							System.out.print("\n\t\t   ✧ NOTA FISCAL ✧\n\n");
-							System.out.print("\n\tPARCELADO EM 2X | 15% DE ACRÉSCIMO\n");
-							System.out.print("\tVALOR TOTAL DE CADA PARCELA: R$ " + df.format(contador));
-							contador2 = contador * 0.09;
-							System.out.print("\n\t 9% DE IMPOSTOS: R$ " + df.format(contador2));
-							linha();
-							break;
-
-						default:
-							System.out.printf("OPÇÃO INVÁLIDA, TENTE NOVAMENTE.\n");
-							break;
-						}
-
-					} while (pagamento > 3);
-
-					System.out.print("\n\n\t        ✧ RELAÇÃO DE PRODUTOS ✧");
-					linha();
-					System.out.print("CÓDIGO\t        PRODUTO\t\t   PREÇO\t  ESTOQUE\n");
-
-					for (int x = 0; x < 10; x++) {
-						System.out.print(
-								"\n " + codigo[x] + "\t\t" + produto[x] + "\t  " + valores[x] + "\t\t  " + estoque[x]);
-					}
-
-					linha();
-					System.out.println("\t         ✧ CARRINHO DE COMPRAS ✧");
-					linha();
-					System.out.println("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n");
-
-				}
-
-				else {
-					linha();
-					System.out.print("\n\t\t      \n");
-					nome();
-					linha();
-					System.out.println("\t\t ATÉ BREVE !!");
-				}
-
 			}
-
-		} else if (op == 'N') {
-
+			// FINALIZAÇÃO DAS COMPRAS
 			linha();
-			System.out.print("\n\t\t      \n");
-			nome();
+			System.out.printf("\t   VALOR TOTAL DA COMPRA: R$ %.2f", carrinho.get(0).getValor());
 			linha();
-			System.out.println("\t\t ATÉ BREVE!!");
+			System.out.print("\t\tFORMA DE PAGAMENTOS:\n\n");
+			System.out.print(" OPÇÃO 1 - A VISTA COM 10% DESCONTO\n");
+			System.out.print(" OPÇÃO 2 - NO CARTÃO COM ACRESCIMO DE 10%\n");
+			System.out.print(" OPÇÃO 3 - EM 2X COM 15% TOTAL DE ACRESCIMENTO\n");
+			linha();
 
-		} else {
-			System.out.println("OPÇÃO INVÁLIDA");
-
+			do {
+				System.out.print("INSIRA AQUI SUA FORMA DE PAGAMENTO: ");
+				pagamento = leia.nextInt();
+			}while(true);
 		}
 
 	}
 
-	// Função Slogan - Mostra no INICIO -
+	// FUNÇÕES EXTRAS
 	public static void nome() {
-
 		System.out.print("\t    ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆\n");
 		System.out.print("\t    ☆   ╔════════════════════╗	  ☆\n");
 		System.out.print("\t    ☆    ❝    JÓIAS CODE     ❞	  ☆\n"); // GAMBIARRA!!!!!!!!!!!!!!
 		System.out.print("\t    ☆   ╚════════════════════╝	  ☆\n"); // NÃO MEXER!!!!!!!!!!!!!!!!
 		System.out.print("\t    ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆ ☆\n");
 		System.out.print("\n\t   ✧ TRAZENDO SEU BRILHO INTERIOR ✧");
-	}// Função Linha - Separação das opções -
-
+		linha();
+		System.out.print("\t        ✧ RELAÇÃO DE PRODUTOS ✧");
+		linha();
+		System.out.print("CÓDIGO \tPRODUTO\t\t  PREÇO\t    ESTOQUE");
+	}
 	public static void linha() {
-		System.out.println("\n══════════════════════════════════════════════════════════\n");
+		System.out.println("\n══════════════════════════════════════════════════════════");
 	}
 
 }
