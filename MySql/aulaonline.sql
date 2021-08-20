@@ -31,3 +31,5 @@ create table tripulantes (
         select * from tripulantes;
         
          select * from tripulantes where genero like 'F';
+         
+   
