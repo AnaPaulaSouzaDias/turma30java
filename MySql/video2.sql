@@ -42,10 +42,19 @@ marca_id bigint not null,
 
 primary key(id),
 foreign key(marca_id) references tb_marcas(id)
-)
+);
 
 insert into tb_produtos (nome,preco,marca_id)
 values("tenis", 69.99,2)
 
 select * From tb_produtos where nome like"%ten%"
 
+INSERT INTO tb_produtos (nome,preco,marca_id) VALUES ("Sapato",60.53,3);
+INSERT INTO tb_produtos (nome,preco,marca_id) VALUES ("Meias",83.50,2);
+INSERT INTO tb_produtos (nome,preco,marca_id) VALUES ("Meias",92.81,5);
+INSERT INTO tb_produtos (nome,preco,marca_id) VALUES ("Blusa",76.95,4);
+
+select tb_produtos.nome, tb_produtos.preco, tb_marcas.nome  
+  from tb_produtos
+  inner join tb_marcas on tb_marcas.id = tb_produtos.marca_id
+  where tb_marcas.nome like "%adidas%"
