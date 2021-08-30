@@ -1,4 +1,4 @@
-package com.loja.games.model;
+package com.loja.game.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,7 +12,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
 
 
 @Entity

@@ -1,13 +1,13 @@
-package com.loja.games;
+package com.loja.game;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GamesApplication {
+public class GameApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GamesApplication.class, args);
+		SpringApplication.run(GameApplication.class, args);
 	}
 
 }
