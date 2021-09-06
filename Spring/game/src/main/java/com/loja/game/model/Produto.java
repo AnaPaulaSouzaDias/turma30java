@@ -1,17 +1,19 @@
 package com.loja.game.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -34,10 +36,14 @@ public class Produto {
 	private String descricao;
 	
 	@NotBlank
-	private BigDecimal valor;
+	private Decimal valor;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date = new java.sql.Date(System.currentTimeMillis());
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
 
 	public long getId() {
 		return id;
@@ -86,8 +92,14 @@ public class Produto {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
+
+	public Categoria getCatergoria() {
+		return categoria;
+	}
+
+	public void setCatergoria(Categoria catergoria) {
+		this.categoria = catergoria;
+	}
 	
 
 }
