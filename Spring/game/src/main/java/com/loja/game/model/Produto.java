@@ -1,5 +1,6 @@
 package com.loja.game.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -29,14 +30,10 @@ public class Produto {
 	private String nome;
 	
 	@NotBlank
-	private long estrelas;
-	
-	@NotBlank
 	@Size(min =10,max =500)
 	private String descricao;
 	
-	@NotBlank
-	private Decimal valor;
+	private BigDecimal valor;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date = new java.sql.Date(System.currentTimeMillis());
@@ -61,14 +58,6 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public long getEstrelas() {
-		return estrelas;
-	}
-
-	public void setEstrelas(long estrelas) {
-		this.estrelas = estrelas;
-	}
-
 	public String getDescricao() {
 		return descricao;
 	}
@@ -76,7 +65,7 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
+	
 	public BigDecimal getValor() {
 		return valor;
 	}
