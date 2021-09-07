@@ -1,6 +1,7 @@
 package org.generation.blogPessoal.model;
 
 public class UserLogin {
+	
 	private String nome;
 	
 	private String usuario;
@@ -41,7 +42,4 @@ public class UserLogin {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-		
-		
-
 }
