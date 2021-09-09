@@ -28,6 +28,19 @@ public class Usuario {
 	@Size(min = 5)
 	private String senha;
 	
+	// Primeiro método Construtor
+
+	public Usuario(long id, String nome, String usuario, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+
+	// Segundo método Construtor
+
+	public Usuario() {	}
+
 
 	public long getId() {
 		return id;
