@@ -7,7 +7,7 @@
   font-size: 30px;
   text-align: center;
   color:#781f40;
-  padding-left: 800px;
+  padding-left: 550px;
 }
 #menu li{
   display: inline;
@@ -63,9 +63,9 @@ img:hover{
 }
 
 .footer{
-  position: fixed;
-  width: 90%;
+  position:absolute;
+  width: 100%;
   text-align: center;
   color:#781f40;
-  bottom: 0;
+  bottom:0;
 }
