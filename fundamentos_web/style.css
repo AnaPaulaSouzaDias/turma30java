@@ -1,14 +1,26 @@
-*{
-  margin:0;
-  padding: 0;
-  border:0;
-}
+
 .center{
   text-align: center;
+  color:#781f40;
+}
+.titulo{
+  font-size: 30px;
+  text-align: center;
+  color:#781f40;
+  padding-left: 800px;
 }
 #menu li{
   display: inline;
-  padding: 30px;
+  padding:20px;
+}
+
+#menu li a{
+  text-decoration: none;
+  color:#781f40;
+  font-size: 25px;
+}
+#menu li a:hover{
+  color:#7e5262;
 }
 body{
  background-color: #ac7d8e;
@@ -21,17 +33,39 @@ body{
   font-size: 20px;
   margin: 10 10 10 10px;
 }
-
+.justify{
+  text-align: justify;
+}
 img{
   transition: all .5s;
   border: 10px solid #eeeeee;
   border-radius: 50%;
 }
 img:hover{
-  border: 10px solid #781f40;
+    border: 10px solid #781f40;
     border-radius: 50%;
     -webkit-filter: drop-shadow(15px 7px 1px rgba(0,0,0,.5));
     filter: drop-shadow(15px 7px 1px rgba(0,0,0,.5));
     -webkit-transform: rotateZ(-360deg) scale(1.0);
     transform: rotateZ(-360deg) scale(1.0);
+}
+.p-30{
+  padding: 30px;
+}
+/* Estilização da pagina do contato */
+
+.ml-50{
+  margin-left: 50px;
+}
+
+.mb-50{
+  margin-left: 50px;
+}
+
+.footer{
+  position: fixed;
+  width: 90%;
+  text-align: center;
+  color:#781f40;
+  bottom: 0;
 }
