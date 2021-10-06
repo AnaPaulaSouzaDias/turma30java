@@ -15,4 +15,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>{
 
 		// Usaremos na Sessão de Testes
 		public Usuario findByNome(String nome);
+		
+		public Optional<Usuario> findByUsuarioAndSenha(String usuario, String senha);
 }

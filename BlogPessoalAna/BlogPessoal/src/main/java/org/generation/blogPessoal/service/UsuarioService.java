@@ -26,18 +26,15 @@ public class UsuarioService {
 
 	}
 
-	public Optional<Usuario> CadastrarUsuario(Usuario usuario) {
-		Optional<Usuario> user = repository.findByUsuario(usuario.getUsuario());
+	public Usuario CadastrarUsuario(Usuario usuario) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		if (user.isPresent()) {
-			return Optional.ofNullable(null);
-		}
 
 		String senhaEncoder = encoder.encode(usuario.getSenha());
 		usuario.setSenha(senhaEncoder);
 
-		return Optional.of(repository.save(usuario));
+		return repository.save(usuario);
 	}
+	
 
 	public Optional<UserLogin> Logar(Optional<UserLogin> user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
